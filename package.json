@@ -1,0 +1,19 @@
+{
+  "name": "advent_of_code_2024",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rm -rf ./dist",
+    "build": "tsc",
+    "q": "npm run clear && npm run build && node --env-file=.env ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  },
+  "type": "module"
+}
