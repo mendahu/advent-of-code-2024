@@ -12,15 +12,16 @@ if (!questionNumber) {
 }
 
 try {
+  const qPart = questionNumber.slice(-1);
+  const qNumber = questionNumber.slice(0, -1);
+
   const { default: qFunc } = await import(
-    path.resolve(`./dist/questions/${questionNumber}/index.js`)
+    path.resolve(`./dist/questions/${qNumber}/${qNumber}${qPart}.js`)
   );
 
-  const numberOnly = questionNumber.slice(0, -1);
-
   const dataPath = loadSample
-    ? `./src/data/${numberOnly}.sample.txt`
-    : `./src/data/${numberOnly}.txt`;
+    ? `./src/data/${qNumber}.sample.txt`
+    : `./src/data/${qNumber}.txt`;
 
   const data = fs.readFileSync(path.resolve(dataPath), "utf-8");
 
