@@ -23,7 +23,7 @@ try {
     ? `./src/data/${qNumber}.sample.txt`
     : `./src/data/${qNumber}.txt`;
 
-  const data = fs.readFileSync(path.resolve(dataPath), "utf-8");
+  const data = fs.readFileSync(path.resolve(dataPath), "utf-8").trim();
 
   qFunc(data);
 } catch (error) {
