@@ -1,11 +1,7 @@
 export default function (data: string): void {
-  const removeNewLinesRegex = new RegExp(/\n/g);
+  const dontRemoverRegex = new RegExp(/don't\(\).*?(do\(\)|$)/gs);
 
-  const noNewLinesData = data.replaceAll(removeNewLinesRegex, "");
-
-  const dontRemoverRegex = new RegExp(/don't\(\).*?(do\(\)|$)/g);
-
-  const subData = noNewLinesData.trim().replaceAll(dontRemoverRegex, "");
+  const subData = data.trim().replaceAll(dontRemoverRegex, "");
 
   const regex = new RegExp(/(mul\((?<a>\d{1,3}?),(?<b>\d{1,3}?)\))/g);
 
