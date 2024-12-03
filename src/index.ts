@@ -11,21 +11,30 @@ if (!questionNumber) {
   process.exit(1);
 }
 
+let qFunc: (data: string) => void = (data: string) => {};
+let data: string = "";
+
 try {
   const qPart = questionNumber.slice(-1);
   const qNumber = questionNumber.slice(0, -1);
 
-  const { default: qFunc } = await import(
+  const { default: func } = await import(
     path.resolve(`./dist/questions/${qNumber}/${qNumber}${qPart}.js`)
   );
+
+  qFunc = func;
 
   const dataPath = loadSample
     ? `./src/data/${qNumber}.sample.txt`
     : `./src/data/${qNumber}.txt`;
 
-  const data = fs.readFileSync(path.resolve(dataPath), "utf-8").trim();
-
-  qFunc(data);
+  data = fs.readFileSync(path.resolve(dataPath), "utf-8").trim();
 } catch (error) {
   console.error(`No code found for question ${questionNumber}`);
+}
+
+try {
+  qFunc(data);
+} catch (err) {
+  console.error(err);
 }
