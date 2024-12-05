@@ -34,7 +34,10 @@ try {
 }
 
 try {
+  const startTime = Date.now();
   qFunc(data);
+  const endTime = Date.now();
+  console.log(`Execution time: ${endTime - startTime}ms`);
 } catch (err) {
   console.error(err);
 }
