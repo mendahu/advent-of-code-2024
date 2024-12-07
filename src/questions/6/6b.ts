@@ -86,6 +86,5 @@ export default function (data: string): void {
     }
   }
 
-  console.log("\n");
-  console.log("loops discovered:", loopsDiscovered);
+  console.log("Loops Discovered:", loopsDiscovered);
 }
