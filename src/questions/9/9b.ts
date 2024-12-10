@@ -46,10 +46,8 @@ const defrag = (files: CompressedFile[]): CompressedFile[] => {
 
   for (let i = endingIndex; i >= 0; i--) {
     const targetFile = files[i];
-    console.log("\nchecking file", targetFile);
 
     if (targetFile.value === null || targetFile.moved) {
-      console.log("File has been moved or is empty, skipping");
       endingIndex--;
       continue;
     }
@@ -62,13 +60,11 @@ const defrag = (files: CompressedFile[]): CompressedFile[] => {
     );
 
     if (destinationIndex === null) {
-      console.log("No empty space found, skipping");
       endingIndex--;
       continue;
     }
 
     if (destinationIndex === startingIndex) {
-      console.log("Destination is current starting index");
       startingIndex++;
     }
 
@@ -80,12 +76,6 @@ const defrag = (files: CompressedFile[]): CompressedFile[] => {
     });
     files.splice(destinationIndex, 0, targetFile);
     files[destinationIndex + 1].blocks -= targetFile.blocks;
-
-    console.log("Moved file", targetFile, "to", destinationIndex);
-
-    // if (files[destinationIndex + 1].blocks <= 0) {
-    //   files.splice(destinationIndex + 1, 1);
-    // }
 
     targetFile.moved = true;
     endingIndex--;
@@ -104,11 +94,8 @@ export default function (data: string): void {
     };
   });
 
-  console.log(files);
-
   const defraggedFiles = defrag(files);
 
-  console.log(defraggedFiles);
   const checksum = getChecksum(defraggedFiles);
 
   console.log(checksum);
