@@ -1,6 +1,6 @@
-export const loopThroughGrid = (
-  grid: string[][],
-  callback: (grid: string[][], x: number, y: number) => void
+export const loopThroughGrid = <T>(
+  grid: T[][],
+  callback: (grid: T[][], x: number, y: number) => void
 ): number => {
   let count = 0;
 
